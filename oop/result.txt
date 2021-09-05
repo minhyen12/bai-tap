@@ -1,0 +1,3 @@
+Chuỗi hợp lệ.
+Chuỗi không hợp lệ.
+Số câu trong chuỗi là: 1
