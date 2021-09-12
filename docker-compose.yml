@@ -1,0 +1,32 @@
+version: "3.1"
+services:
+    php:
+      image: php:7.3-fpm-alpine
+      container_name: php-oop
+      volumes:
+        - ./:/var/www/html
+
+    webserver:
+      image: nginx:1.17.10
+      container_name: nginx-oop
+      links:
+        - php:fpm
+      environment:
+        - FPM_HOST=fpm
+        - FPM_PORT=9000
+      volumes:
+        - ./:/var/www/html
+        - ./docker/nginx_conf:/etc/nginx/conf.d/
+      ports:
+       - "8080:80"
+    mysql:
+      image: mysql:8.0
+      container_name: mysql 
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: sqlserverDB
+        MYSQL_USER: sqlserver
+        MYSQL_PASSWORD: root
+      ports:
+        - 3306:3306 
+   
