@@ -1,4 +1,7 @@
 <?php 
+require_once('Connection.php');
+	
+	$conn = Connection::startConnect();
 	$mod = 'register';
 	$act = 'index';
 
@@ -10,7 +13,7 @@
 	switch ($mod) {
 		case 'register':
 			require_once('RegisterPdo.php');
-			$registerController = new RegisterPdo();
+			$registerController = new RegisterPdo($conn);
 			switch ($act) {
 				case 'index':
 					$registerController->index();
@@ -24,7 +27,7 @@
 			break;
 		case 'login':
 			require_once('LoginPdo.php');
-			$loginController = new LoginPdo();
+			$loginController = new LoginPdo($conn);
 			switch ($act) {
 				case 'index':
 					$loginController->index();

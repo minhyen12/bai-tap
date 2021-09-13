@@ -1,16 +1,12 @@
 <?php 
-/**
- * 
- */
-require_once('Connection.php');
 session_start();
 
 class LoginPdo 
 {
 	private $conn ;
-	function __construct()
+	function __construct($conn)
 	{
-		$this->conn = new Connection;
+		$this->conn = $conn;
 	}
 	public function index()
 	{
@@ -30,9 +26,9 @@ class LoginPdo
 				return false;
 			}
 			$password = md5($password);
-			$sql = "SELECT * FROM users WHERE email = '".$email."' AND password = '".$password."'";
-			$query = $this->conn->startConnect();
-			$res = $query->query($sql)->fetch(PDO::FETCH_OBJ);
+			$sql = "SELECT * FROM users WHERE email = '". $email ."' AND password = '". $password ."'";
+
+			$res = $this->conn->query($sql)->fetch(PDO::FETCH_OBJ);
 			if($res == true) {
 				$_SESSION['email'] = $email ;
 				echo "Đăng nhập thành công";
@@ -57,8 +53,8 @@ class LoginPdo
 		//kiem tra pass
 		if (empty($password)) {
 			$err_arr['err_password'] = "Password không được để trống!";
-		} else if (strlen($password) < 6 || strlen($password) > 100) {
-			$err_arr['err_password'] = "Password có độ dài từ 6 đến 100 ký tự!";
+		} else if (!preg_match($regex_pass, $password)) {
+			$err_arr['err_password'] = "Password có tối thiểu tám ký tự, ít nhất một chữ cái, một số và một ký tự đặc biệt!";
 		}
 		return $err_arr;
 	}
