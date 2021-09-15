@@ -21,7 +21,7 @@ class LoginPdo
 
 			$errArr = $this->validate($emai, $password);
 
-			if(!empty($err_email)) {
+			if(!empty($errEmail)) {
 				require_once('login.php');
 				return false;
 			}
