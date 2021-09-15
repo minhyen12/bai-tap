@@ -20,54 +20,54 @@
 						<div class="form-group">
 							<label for="email">Email</label>
 							<input type="text" class="form-control" id="email" name="email" placeholder="Email">
-							<?php if (!empty($err_arr['err_email'])): ?>
+							<?php if (!empty($errArr['errEmail'])): ?>
 								<span class="text-danger">
-									<?php echo $err_arr['err_email'] ?>
+									<?php echo $errArr['errEmail'] ?>
 								</span>
 							<?php endif ?>
 						</div>
 						<div class="form-group">
 							<label for="name">Name</label>
 							<input type="text" class="form-control" id="name" name="name" placeholder="name">
-							<?php if (!empty($err_arr['err_name'])): ?>
+							<?php if (!empty($errArr['errName'])): ?>
 								<span class="text-danger">
-									<?php echo $err_arr['err_name'] ?>
+									<?php echo $errArr['errName'] ?>
 								</span>
 							<?php endif ?>
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
 							<input type="password" class="form-control" id="password" name="password" placeholder="password">
-							<?php if (!empty($err_arr['err_password'])): ?>
+							<?php if (!empty($errArr['errPassword'])): ?>
 								<span class="text-danger">
-									<?php echo $err_arr['err_password'] ?>
+									<?php echo $errArr['errPassword'] ?>
 								</span>
 							<?php endif ?>
 						</div>
 						<div class="form-group">
 							<label for="password_cf">Password confirm</label>
 							<input type="password" class="form-control" id="password_cf" name="password_cf" placeholder="Password confirm">
-							<?php if (!empty($err_arr['err_password_cf'])): ?>
+							<?php if (!empty($errArr['errPasswordCf'])): ?>
 								<span class="text-danger">
-									<?php echo $err_arr['err_password_cf'] ?>
+									<?php echo $errArr['errPasswordCf'] ?>
 								</span>
 							<?php endif ?>
 						</div>
 						<div class="form-group">
 							<label for="phone">Phone</label>
 							<input type="number" class="form-control" id="phone" name="phone" placeholder="phone">
-							<?php if (!empty($err_arr['err_phone'])): ?>
+							<?php if (!empty($errArr['errPhone'])): ?>
 								<span class="text-danger">
-									<?php echo $err_arr['err_phone'] ?>
+									<?php echo $errArr['errPhone'] ?>
 								</span>
 							<?php endif ?>
 						</div>
 						<div class="form-group">
 							<label for="address">Address</label>
 							<input type="text" class="form-control" id="address" name="address" placeholder="address">
-							<?php if (!empty($err_arr['err_address'])): ?>
+							<?php if (!empty($errArr['errAddress'])): ?>
 								<span class="text-danger">
-									<?php echo $err_arr['err_address'] ?>
+									<?php echo $errArr['errAddress'] ?>
 								</span>
 							<?php endif ?>
 						</div>

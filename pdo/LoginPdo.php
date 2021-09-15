@@ -19,7 +19,7 @@ class LoginPdo
 			$email = $_POST['email'];
 			$password = $_POST['password'];
 
-			$err_arr = $this->validate($emai, $password);
+			$errArr = $this->validate($emai, $password);
 
 			if(!empty($err_email)) {
 				require_once('login.php');
@@ -40,23 +40,24 @@ class LoginPdo
 	}
 	public function validate($emai, $password)
 	{
-		$err_arr = array();
-		$regex = "/([a-z0-9_]+|[a-z0-9_]+\.[a-z0-9_]+)@(([a-z0-9]|[a-z0-9]+\.[a-z0-9]+)+\.([a-z]{2,4}))/i";
+		$errArr = array();
+		$regexEmail = "/([a-z0-9_]+|[a-z0-9_]+\.[a-z0-9_]+)@(([a-z0-9]|[a-z0-9]+\.[a-z0-9]+)+\.([a-z]{2,4}))/i";
+		$regexPass = "/(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8, 100}/";
 			//ktra mail
 		if (empty($email)) {
-			$err_arr['err_email'] = "Email không được để trống!";
-		} else if (!preg_match($regex, $email)) {
-			$err_arr['err_email'] = "Email không đúng định dạng!";
+			$errArr['errEmail'] = "Email không được để trống!";
+		} else if (!preg_match($regexEmail, $email)) {
+			$errArr['errEmail'] = "Email không đúng định dạng!";
 		} else if (strlen($email) > 255) {
-			$err_arr['err_email'] = "Độ dài emai nhỏ hơn 255 ký tự!";
+			$errArr['errEmail'] = "Độ dài emai nhỏ hơn 255 ký tự!";
 		}
 		//kiem tra pass
 		if (empty($password)) {
-			$err_arr['err_password'] = "Password không được để trống!";
-		} else if (!preg_match($regex_pass, $password)) {
-			$err_arr['err_password'] = "Password có tối thiểu tám ký tự, ít nhất một chữ cái, một số và một ký tự đặc biệt!";
+			$errArr['errPassword'] = "Password không được để trống!";
+		} else if (!preg_match($regexPass, $password)) {
+			$errArr['errPassword'] = "Password có tối thiểu tám ký tự, ít nhất một chữ cái, một số và một ký tự đặc biệt!";
 		}
-		return $err_arr;
+		return $errArr;
 	}
 }
 ?>

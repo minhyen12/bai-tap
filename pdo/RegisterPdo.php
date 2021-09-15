@@ -16,18 +16,18 @@ class RegisterPdo
 
 	public function register()
 	{
-		$email = $name = $password = $password_cf = $phone = $address = '';
+		$email = $name = $password = $passwordCf = $phone = $address = '';
 		if (isset($_POST['submit'])) {
 			$email = $_POST['email'];
 			$name = $_POST['name'];
 			$password = $_POST['password'];
-			$password_cf = $_POST['password_cf'];
+			$passwordCf = $_POST['password_cf'];
 			$phone = $_POST['phone'];
 			$address = $_POST['address'];
 
-			$err_arr = $this->validateField($email, $name, $password, $password_cf, $phone, $address);
+			$errArr = $this->validateField($email, $name, $password, $passwordCf, $phone, $address);
 
-			if (!empty($err_arr)) {
+			if (!empty($errArr)) {
 				require_once('register.php');
 				return false;
 			}
@@ -42,44 +42,44 @@ class RegisterPdo
 
 	protected function validateField($email, $name, $password, $password_cf, $phone, $address)
 	{
-		$err_arr = array();
-		$regex = "/([a-z0-9_]+|[a-z0-9_]+\.[a-z0-9_]+)@(([a-z0-9]|[a-z0-9]+\.[a-z0-9]+)+\.([a-z]{2,4}))/i";
-		$regex_pass = "/(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8, 100}/";
+		$errArr = array();
+		$regexEmail = "/([a-z0-9_]+|[a-z0-9_]+\.[a-z0-9_]+)@(([a-z0-9]|[a-z0-9]+\.[a-z0-9]+)+\.([a-z]{2,4}))/i";
+		$regexPass = "/(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8, 100}/";
 				//ktra mail
 		if (empty($email)) {
-			$err_arr['err_email'] = "Email không được để trống!";
-		} else if (!preg_match($regex, $email)) {
-			$err_arr['err_email'] = "Email không đúng định dạng!";
+			$errArr['errEmail'] = "Email không được để trống!";
+		} else if (!preg_match($regexEmail, $email)) {
+			$errArr['errEmail'] = "Email không đúng định dạng!";
 		} else if (strlen($email) > 255) {
-			$err_arr['err_email'] = "Độ dài emai nhỏ hơn 255 ký tự!";
+			$errArr['errEmail'] = "Độ dài emai nhỏ hơn 255 ký tự!";
 		}
 				//ktra name
 		if ($name == '') {
-			$err_arr['err_name'] = "Name không được để trống!";
+			$errArr['errName'] = "Name không được để trống!";
 		} else if (strlen($name) < 6 || strlen($name) > 200) {
-			$err_arr['err_name'] = "Độ dài tên từ 6 đến 200 ký tự!";
+			$errArr['errName'] = "Độ dài tên từ 6 đến 200 ký tự!";
 		}
 				//kiem tra pass
 		if (empty($password)) {
-			$err_arr['err_password'] = "Password không được để trống!";
-		} else if (!preg_match($regex_pass, $password)) {
-			$err_arr['err_password'] = "Password có tối thiểu tám ký tự, ít nhất một chữ cái, một số và một ký tự đặc biệt!";
+			$errArr['errPassword'] = "Password không được để trống!";
+		} else if (!preg_match($regexPass, $password)) {
+			$errArr['errPassword'] = "Password có tối thiểu tám ký tự, ít nhất một chữ cái, một số và một ký tự đặc biệt!";
 		}
 				//ktra conf pass
-		if (empty($password_cf)) {
-			$err_arr['err_password_cf'] = "Password Confirm không được để trống!";
-		} else if ($password != $password_cf) {
-			$err_arr['err_password_cf'] = "Password confirm chưa chính xác!";
+		if (empty($passwordCf)) {
+			$errArr['errpasswordCf'] = "Password Confirm không được để trống!";
+		} else if ($password != $passwordCf) {
+			$errArr['errpasswordCf'] = "Password confirm chưa chính xác!";
 		}
 				// ktra phone
 		if (strlen($phone) < 10 || strlen($phone) > 20) {
-			$err_arr['err_phone'] = "Độ dài số điện thoại từ 10-20";
+			$errArr['errPhone'] = "Độ dài số điện thoại từ 10-20";
 		}
 				// ktra address
 		if (empty($address)) {
-			$err_arr['err_address'] = "Address không được để trống!";
+			$errArr['errAddress'] = "Address không được để trống!";
 		}
-		return $err_arr;
+		return $errArr;
 	}
 }
 ?>

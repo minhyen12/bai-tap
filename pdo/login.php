@@ -20,18 +20,18 @@
 						<div class="form-group">
 							<label for="email">Email</label>
 							<input type="text" class="form-control" id="email" name="email" placeholder="Email">
-							<?php if (!empty($err_arr['err_email'])): ?>
+							<?php if (!empty($errArr['errEmail'])): ?>
 								<span class="text-danger">
-									<?php echo $err_arr['err_email'] ?>
+									<?php echo $errArr['errEmail'] ?>
 								</span>
 							<?php endif ?>
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
 							<input type="password" class="form-control" id="password" name="password" placeholder="password">
-							<?php if (!empty($err_arr['err_password'])): ?>
+							<?php if (!empty($errArr['errPassword'])): ?>
 								<span class="text-danger">
-									<?php echo $err_arr['err_password'] ?>
+									<?php echo $errArr['errPassword'] ?>
 								</span>
 							<?php endif ?>
 						</div>
